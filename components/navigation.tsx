@@ -21,7 +21,7 @@ const doto = Doto({
 const navActions = [
   { label: "GitHub", href: "https://github.com/hugo-bastien/shrtlnk" },
   { label: "Docs", href: "/docs" },
-  { label: "Dashboard", href: "/dashboard" },
+  { label: "Dashboard", href: "/app/dashboard" },
 ];
 
 export default function Navigation() {
