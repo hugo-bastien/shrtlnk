@@ -40,7 +40,7 @@ export default function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
-        <SidebarGroup className="px-4">
+        <SidebarGroup className="p-4">
           <Link
             href="/"
             className={cn(
