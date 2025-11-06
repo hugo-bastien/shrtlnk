@@ -15,6 +15,12 @@ const notoSansMono = Noto_Sans_Mono({
 export const metadata: Metadata = {
   title: "shrtlnk",
   description: "Minimal URL shortener that converts long links into clean, shareable URLs.",
+  icons: {
+    icon: [
+      { url: '/favicon-light.svg', media: '(prefers-color-scheme: light)' },
+      { url: '/favicon-dark.svg', media: '(prefers-color-scheme: dark)' },
+    ],
+  },
 };
 
 export default function RootLayout({
