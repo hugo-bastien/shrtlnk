@@ -40,7 +40,7 @@ export default function AppSidebar() {
   return (
     <Sidebar>
       <SidebarContent>
-        <SidebarGroup className="p-4">
+        <SidebarGroup className="px-6 py-4">
           <Link
             href="/"
             className={cn(
@@ -51,7 +51,7 @@ export default function AppSidebar() {
             shrtlnk
           </Link>
         </SidebarGroup>
-        <SidebarGroup>
+        <SidebarGroup className="px-4">
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
