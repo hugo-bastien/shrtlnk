@@ -1,4 +1,6 @@
-export { auth as default } from "@/auth"
+import { auth } from "@/auth"
+
+export default auth
 
 export const config = {
   // https://nextjs.org/docs/app/api-reference/file-conventions/proxy#matcher
