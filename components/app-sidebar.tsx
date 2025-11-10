@@ -1,8 +1,9 @@
-import { Home, LinkIcon, Settings } from "lucide-react";
+import { Home, LinkIcon, Settings, ChevronUp, User, UserPen, LogOut } from "lucide-react";
 import Link from "next/link";
 
 import { Doto } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { auth } from "@/auth";
 
 const doto = Doto({
   subsets: ["latin"],
@@ -16,7 +17,16 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarHeader,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu";
 
 const items = [
   {
@@ -29,29 +39,47 @@ const items = [
     url: "/app/links",
     icon: LinkIcon,
   },
+];
+
+const footerItems = [
+  {
+    title: "Account",
+    url: "/app/account",
+    icon: UserPen,
+  },
   {
     title: "Settings",
     url: "/app/settings",
     icon: Settings,
   },
-];
+  {
+    title: "Sign out",
+    url: "/logout",
+    icon: LogOut,
+  },
+]
 
-export default function AppSidebar() {
+export default async function AppSidebar() {
+  const session = await auth();
+  const fullName = session?.user?.name?.trim() ?? "";
+  const nameParts = fullName ? fullName.split(/\s+/) : [];
+  const [firstName, ...rest] = nameParts;
+  const lastName = rest.join(" ");
+  const displayName =
+    [firstName, lastName].filter(Boolean).join(" ") ||
+    session?.user?.name ||
+    session?.user?.email?.split("@")[0] ||
+    "User";
+
   return (
     <Sidebar>
-      <SidebarContent>
-        <SidebarGroup className="px-6 py-4">
-          <Link
-            href="/"
-            className={cn(
-              doto.className,
-              "text-2xl text-foreground transition-colors hover:text-foreground/80"
-            )}
-          >
-            shrtlnk
-          </Link>
-        </SidebarGroup>
-        <SidebarGroup className="px-4">
+      <SidebarHeader className="px-6 py-4">
+        <Link href="/" className={cn(doto.className, "text-2xl text-foreground transition-colors hover:text-foreground/80")}>
+          shrtlnk
+        </Link>
+      </SidebarHeader>
+      <SidebarGroup className="px-4">
+        <SidebarContent>
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
@@ -64,8 +92,32 @@ export default function AppSidebar() {
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
-        </SidebarGroup>
-      </SidebarContent>
+        </SidebarContent>
+      </SidebarGroup>
+      <SidebarFooter className="mt-auto px-4 pb-4">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton className="group">
+                  <User /> {displayName}
+                  <ChevronUp className="ml-auto transition-transform duration-200 group-data-[state=open]:rotate-180" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent side="top" align="start" style={{ width: "var(--radix-popper-anchor-width)" }}>
+                {footerItems.map((item) => (
+                  <DropdownMenuItem key={item.title} asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }
