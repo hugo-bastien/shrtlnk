@@ -54,10 +54,10 @@ const footerItems = [
   },
   {
     title: "Sign out",
-    url: "/logout",
+    url: "/signout",
     icon: LogOut,
-  },
-]
+  }
+];
 
 export default async function AppSidebar() {
   const session = await auth();
