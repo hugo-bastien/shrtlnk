@@ -30,7 +30,7 @@ export default function AppHeader({
   return (
     <header
       className={cn(
-        "flex items-center gap-3 border-b border-border/60 h-16 p-6",
+        "flex items-center gap-3 border-b border-border/60 h-16 p-6 backdrop-blur",
         className
       )}
     >
