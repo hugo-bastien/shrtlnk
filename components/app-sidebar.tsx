@@ -1,5 +1,6 @@
 import { Home, LinkIcon, Settings, ChevronUp, User, UserPen, LogOut } from "lucide-react";
 import Logo from "@/components/logo";
+import Link from "next/link";
 
 import { auth } from "@/auth";
 
@@ -75,10 +76,10 @@ export default async function AppSidebar() {
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
-                  <a href={item.url}>
+                  <Link href={item.url}>
                     <item.icon />
                     <span>{item.title}</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
@@ -98,10 +99,10 @@ export default async function AppSidebar() {
               <DropdownMenuContent side="top" align="start" style={{ width: "var(--radix-popper-anchor-width)" }}>
                 {footerItems.map((item) => (
                   <DropdownMenuItem key={item.title} asChild>
-                    <a href={item.url}>
+                    <Link href={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
