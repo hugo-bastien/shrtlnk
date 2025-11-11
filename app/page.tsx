@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button"
 
 export default function Home() {
   return (
-    <main className="bg-background text-foreground">
+    <main className="bg-background text-foreground flex min-h-screen flex-col">
       <Navigation />
-      <div className="flex min-h-screen flex-col items-center justify-center px-6 py-24">
-        <section className="flex max-w-2xl flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+      <div className="flex flex-1 flex-col items-center px-6 py-24">
+        <section className="flex w-full max-w-2xl flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">
             Share clean, memorable links in seconds.
           </h1>
