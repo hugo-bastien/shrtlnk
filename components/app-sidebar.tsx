@@ -1,14 +1,7 @@
 import { Home, LinkIcon, Settings, ChevronUp, User, UserPen, LogOut } from "lucide-react";
-import Link from "next/link";
+import Logo from "@/components/logo";
 
-import { Doto } from "next/font/google";
-import { cn } from "@/lib/utils";
 import { auth } from "@/auth";
-
-const doto = Doto({
-  subsets: ["latin"],
-  weight: ["900"],
-});
 
 import {
   Sidebar,
@@ -74,9 +67,7 @@ export default async function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="px-6 py-4">
-        <Link href="/" className={cn(doto.className, "text-2xl text-foreground transition-colors hover:text-foreground/80")}>
-          shrtlnk
-        </Link>
+        <Logo />
       </SidebarHeader>
       <SidebarGroup className="px-4">
         <SidebarContent>

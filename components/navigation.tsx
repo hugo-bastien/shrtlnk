@@ -1,7 +1,10 @@
 "use client";
 
+import Logo from "@/components/logo";
 import Link from "next/link";
-import { Doto } from "next/font/google";
+
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
 
 import {
   NavigationMenu,
@@ -10,13 +13,6 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { cn } from "@/lib/utils";
-
-const doto = Doto({
-  subsets: ["latin"],
-  weight: ["900"],
-});
 
 const navActions = [
   { label: "GitHub", href: "https://github.com/hugo-bastien/shrtlnk" },
@@ -31,15 +27,7 @@ export default function Navigation() {
     <header className="sticky top-0 z-20 border-b border-foreground/10 bg-background/80 backdrop-blur">
       <div className="mx-auto flex h-16 w-full items-center justify-center px-6">
         <div className="flex w-full items-center justify-between gap-6">
-          <Link
-            href="/"
-            className={cn(
-              doto.className,
-              "text-2xl text-foreground transition-colors hover:text-foreground/80"
-            )}
-          >
-            shrtlnk
-          </Link>
+          <Logo />
           <NavigationMenu
             className={cn("ml-auto justify-end", isMobile ? "hidden sm:flex" : "")}
           >
